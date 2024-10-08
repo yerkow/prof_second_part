@@ -23,7 +23,7 @@ from .serializer import ProfCollegianBodiesSerializer, ProfMemberSerializer, Pro
 class ProfView(viewsets.ModelViewSet):
     queryset = Prof.objects.all()
     serializer_class = ProfSerializer
-    lookup_field = "id"
+    lookup_field = "bin"
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["industry", "higher_union_org", "union_name", "union_type", "bin", "chairman_name"]
 
