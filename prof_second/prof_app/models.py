@@ -56,8 +56,8 @@ class ProfMember(models.Model):
     total_work_experience = models.DateField()
     org_work_experience = models.DateField()
     union_membership_date = models.DateField()
-    awards = models.TextField()
-    vacation = models.TextField()
+    awards_list = models.TextField()
+    vacation_list = models.TextField()
     phone = models.CharField(max_length = 20)
     email = models.CharField(max_length = 255)
 
