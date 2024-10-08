@@ -14,7 +14,7 @@ class Prof(models.Model):
     union_name = models.CharField(max_length = 255)
     union_type = models.CharField(max_length = 255)
     addres = models.TextField()
-    phone = models.CharField(20)
+    phone = models.CharField(max_length=20)
     website = models.TextField()
     email = models.CharField(max_length = 255)
     chairman_name = models.CharField(max_length = 255)
