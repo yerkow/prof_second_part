@@ -54,7 +54,7 @@ class ReportView(viewsets.ModelViewSet):
     serializer_class = ReportSerializer
     lookup_field = "id"
 
-class VizitView(viewsets.modelViewSet):
+class VizitView(viewsets.ModelViewSet):
     queryset = Vizit.objects.all()
     serializer_class = VizitSerializer
     lookup_field = "id"
