@@ -7,8 +7,8 @@ class Vizit(models.Model):
     date = models.DateField(auto_now_add=True)
 
 class Prof(models.Model):
-    id = models.AutoField(primary_key = True)
-    bin = models.CharField(max_length = 12)
+    id = models.AutoField()
+    bin = models.CharField(primary_key = True, max_length = 12)
     industry = models.CharField(max_length = 255)
     higher_union_org = models.CharField(max_length = 255)
     union_name = models.CharField(max_length = 255)
