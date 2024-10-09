@@ -82,7 +82,7 @@ class AwardsVacationProfIdVIew(APIView):
         except data_object.DoesNotExist:
             return Response({'error': 'Object does not exist'})
         
-        serializer = serializer_class(data_object)
+        serializer = serializer_class(data_object, many = True)
         return Response(serializer.data)
 
 class UploadProfMembers(APIView):
