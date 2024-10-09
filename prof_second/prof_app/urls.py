@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
-from .views import ProfView, ProfCollegianBodiesView, VizitView, VacationView, AwardsView, SocialPartnershipView, ProfMemberView, ReportView
+from .views import ProfView, ProfCollegianBodiesView, VizitView, VacationView, AwardsView, SocialPartnershipView, ProfMemberView, ReportView, AwardsVacationProfIdVIew
 
 router = DefaultRouter()
 router.register('prof-view', ProfView, basename = 'prof-view')
@@ -16,5 +16,6 @@ router.register('social-partnership-view', SocialPartnershipView, basename = 'so
 
 urlpatterns = [
     path('token/', obtain_auth_token, name='obtain_token'),
+    path('awards-vacation-prof-member-id-view', AwardsVacationProfIdVIew.as_view(), name='awards-vacation-prof-member-id-view'),
     path('', include(router.urls))
 ]

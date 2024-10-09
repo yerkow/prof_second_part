@@ -23,7 +23,7 @@ from .serializer import ProfCollegianBodiesSerializer, ProfMemberSerializer, Pro
 class ProfView(viewsets.ModelViewSet):
     queryset = Prof.objects.all()
     serializer_class = ProfSerializer
-    lookup_field = "id"
+    lookup_field = "bin"
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["industry", "higher_union_org", "union_name", "union_type", "bin", "chairman_name"]
 
@@ -63,6 +63,25 @@ class SocialPartnershipView(viewsets.ModelViewSet):
     queryset = SocialPartnershipAgreements.objects.all()
     serializer_class = SocialPartnershipAgreementsSerializer
     lookup_field = "id"
+
+class AwardsVacationProfIdVIew(APIView):
+    serializer_class = AwardsSerializer
+    def get(self, request, *args, **kwargs):
+        prof_member_id = request.query_params.get('prof_member_id')
+        request_type = request.query_params.get('type')
+
+        if not prof_member_id:
+            return Response({'error': 'prof_member_id parameter is required'})
+        try:
+            if request_type == "awards":
+                data_object = Awards.objects.filter(prof_memeber_id = prof_member_id)
+            if request_type == "vacation":
+                data_object = Vacation.objects.filter(prof_memeber_id = prof_member_id)
+        except data_object.DoesNotExist:
+            return Response({'error': 'Object does not exist'})
+        
+        serializer = self.serializer_class(data_object)
+        return Response(serializer.data)
 
 class UploadProfMembers(APIView):
     def post(self, request, *args, **kwargs):

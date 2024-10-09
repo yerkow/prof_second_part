@@ -7,8 +7,7 @@ class Vizit(models.Model):
     date = models.DateField(auto_now_add=True)
 
 class Prof(models.Model):
-    id = models.AutoField(primary_key = True)
-    bin = models.CharField(max_length = 12)
+    bin = models.CharField(primary_key = True, max_length = 12)
     industry = models.CharField(max_length = 255)
     higher_union_org = models.CharField(max_length = 255)
     union_name = models.CharField(max_length = 255)
@@ -20,7 +19,7 @@ class Prof(models.Model):
     chairman_name = models.CharField(max_length = 255)
 
     def __str__(self):
-        return self.id
+        return self.bin
 
 class Report(models.Model):
     id = models.AutoField(primary_key = True)
@@ -56,8 +55,8 @@ class ProfMember(models.Model):
     total_work_experience = models.DateField()
     org_work_experience = models.DateField()
     union_membership_date = models.DateField()
-    awards_list = models.TextField()
-    vacation_list = models.TextField()
+    awards_list = models.TextField(default=None, blank=True, null=True)
+    vacation_list = models.TextField(default=None, blank=True, null=True)
     phone = models.CharField(max_length = 20)
     email = models.CharField(max_length = 255)
 
