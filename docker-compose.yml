@@ -28,7 +28,7 @@ services:
       - DB_HOST=mariadb
     networks:
       - prof_second_network
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
 
   nginx:
     image: nginx:latest
