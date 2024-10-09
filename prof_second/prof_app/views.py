@@ -64,6 +64,25 @@ class SocialPartnershipView(viewsets.ModelViewSet):
     serializer_class = SocialPartnershipAgreementsSerializer
     lookup_field = "id"
 
+class AwardsVacationProfIdVIew(APIView):
+    serializer_class = AwardsSerializer
+    def get(self, request, *args, **kwargs):
+        prof_member_id = request.query_params.get('prof_member_id')
+        request_type = request.query_params.get('type')
+
+        if not prof_member_id:
+            return Response({'error': 'prof_member_id parameter is required'})
+        try:
+            if request_type == "awards":
+                data_object = Awards.objects.filter(prof_memeber_id = prof_member_id)
+            if request_type == "vacation":
+                data_object = Vacation.objects.filter(prof_memeber_id = prof_member_id)
+        except data_object.DoesNotExist:
+            return Response({'error': 'Object does not exist'})
+        
+        serializer = self.serializer_class(data_object)
+        return Response(serializer.data)
+
 class UploadProfMembers(APIView):
     def post(self, request, *args, **kwargs):
         # Получаем prof_id из query параметра
