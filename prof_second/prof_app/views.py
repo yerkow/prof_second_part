@@ -32,7 +32,7 @@ class ProfMemberView(viewsets.ModelViewSet):
     serializer_class = ProfMemberSerializer
     lookup_field = "id"
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["name", "union_ticket_number", "gender", "birth_date", "position", "role", "education", "awards", "vacation"]
+    filterset_fields = ["name", "union_ticket_number", "gender", "birth_date", "position", "role", "education", "awards", "vacation", "prof_id"]
 
 class ProfCollegianBodiesView(viewsets.ModelViewSet):
     queryset = ProfCollegianBodies.objects.all()
@@ -151,3 +151,6 @@ class UploadProfMembers(APIView):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+class GetTreeView(APIView):
+    pass
