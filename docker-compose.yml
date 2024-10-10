@@ -21,6 +21,7 @@ services:
       context:
         ./prof_second
     volumes:
+      - ./home/yekinsgn/db.sqlite3:/app/db.sqlite3
       - ./prof_second:/app
     ports:
       - "8002:8000"
